@@ -30,23 +30,19 @@ def make_chains(text_string):
 
     chains = {}
     words = text_string.split()
-    print words
+
+    dict_value = []
 
     for i in range(len(words)-2):
         key = (words[i], words[i+1])
         value = words[i+2]
-        chains[key] = value
-    print chains        
+        # print key
+        # print value
 
-    # for i in range(len(words)):
-    #     words_value.append(words[i+2])
-
-    # print words_value 
-
-    # new_chains = chains.items()
-    # print new_chains
-
-
+        
+        values = chains.get(key, [])
+        values.append(value)
+        chains[key] = values  
 
     return chains
 
