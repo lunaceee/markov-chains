@@ -30,6 +30,7 @@ def make_chains(text_string):
 
     chains = {}
     words = text_string.split()
+    words.append(None)
 
     dict_value = []
 
@@ -43,12 +44,33 @@ def make_chains(text_string):
         values = chains.get(key, [])
         values.append(value)
         chains[key] = values  
-
+    # print chains
     return chains
+
 
 
 def make_text(chains):
     """Takes dictionary of markov chains; returns random text."""
+    # import random generator
+    # have random generator pick a starting point
+    # random generator will pick a random tuple
+    # get random item in the list associated with the random tuple
+    #  shift the key by 1
+    # get a random value associated with the new key
+    # if the word None appears in the loop, then stop]
+    import random
+    key_list = chains.keys()
+    first_key = random.choice(key_list)
+    print first_key
+    random_value = chains.get(first_key)
+    print random_value
+    first_value = random.choice(random_value)
+    print first_value
+
+    first_string = ' '.join(first_key) + ' ' + first_value
+    print first_string
+
+
 
     text = ""
 
