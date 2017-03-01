@@ -30,7 +30,7 @@ def make_chains(text_string):
 
     chains = {}
     words = text_string.split()
-    words.append(None)
+    # words.append(None)
 
     dict_value = []
 
@@ -44,7 +44,7 @@ def make_chains(text_string):
         values = chains.get(key, [])
         values.append(value)
         chains[key] = values  
-    # print chains
+    # print "chains", chains
     return chains
 
 
@@ -61,25 +61,35 @@ def make_text(chains):
     import random
     key_list = chains.keys()
     first_key = random.choice(key_list)
-    print first_key
+    # print first_key
     random_value = chains.get(first_key)
-    print random_value
+    # print random_value
     first_value = random.choice(random_value)
-    print first_value
+    # print first_value
+    the_second_word = first_key[1]
 
-    first_string = ' '.join(first_key) + ' ' + first_value
-    print first_string
+    new_key = (the_second_word, first_value)
+    # print new_key
 
+    new_words = ""
+    while True:
+        if chains.get(new_key) == None:
+            break
+        the_new_list = chains.get(new_key)
+        # print "the new list", the_new_list
+        new_random_value = random.choice(the_new_list)
+        # print "new_value", new_random_value
+        new_key = (new_key[1], new_random_value)
+        # print "new_key", new_key
 
-
-    text = ""
-
+        new_words += new_random_value + ' '
+        
     # your code goes here
 
-    return text
+    return new_words
 
 
-input_path = "green-eggs.txt"
+input_path = "gettysburg.txt"
 
 # Open the file and turn it into one long string
 input_text = open_and_read_file(input_path)
